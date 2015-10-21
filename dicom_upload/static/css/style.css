@@ -1,0 +1,86 @@
+body {
+    font-family: 'Merriweather', serif;
+}
+
+h1 {
+    border-bottom: 1px solid #ccc;
+}
+
+input[type=file] {
+    display:none;
+}
+
+.icon {
+    text-decoration: none;
+}
+.icon.delete-icon:before {
+    content: "\2718";
+}
+.icon.edit-icon:before   {
+    content: "\270E";
+    margin-right: 10px;
+}
+
+#dicom-uploader-component {
+    border: 1px solid #ccc;
+    width: 400px;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+#dicom-uploader-component .dicom-upload-btn {
+    margin: 0px 2px;
+    font-size: 13px;
+    font-family: .HelveticaNeueDeskInterface-Regular;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 1px 5px;
+    cursor: pointer;
+    background-color: white;
+}
+
+#dicom-uploader-component .upload-spinner {
+    margin: 0 4px;
+}
+
+#dicom-uploader-component .upload-error {
+    display: block;
+    color: red;
+    font-size: 11px;
+    margin: 6px 2px;
+}
+
+#dicom-table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    width: 900px;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+#dicom-table th {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 8px;
+}
+
+#dicom-table td {
+    padding: 8px;
+}
+
+#dicom-table tbody tr:nth-child(odd) {
+    background: #e8edff;
+}
+
+#dicom-table td.empty-placeholder {
+    column-span: all;
+}
+
+/* Limit width on annotation row so the table isn't jumpy on edits. */
+#dicom-table .annotation-row {
+    width: 25%;
+}
+
+#dicom-table .annotation-row input {
+    width: 100%;
+}

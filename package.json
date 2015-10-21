@@ -1,0 +1,8 @@
+{
+	"name": "dicom_uploader",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"react-tools": "0.13.3"
+	}
+}

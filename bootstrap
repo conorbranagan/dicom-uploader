@@ -1,0 +1,17 @@
+#!/bin/bash
+
+VIRTUALENV=./py3
+PYTHON=$(which python3.4)
+if [ ! -f $PYTHON ]; then
+	echo "Python 3.4 binary is missing!"
+	exit 1
+fi
+
+if [ ! -d $VIRTUALENV ]; then
+    virtualenv --python=$PYTHON $VIRTUALENV
+fi
+
+. $VIRTUALENV/bin/activate
+pip install -r requirements.txt
+npm install
+make static

@@ -1,0 +1,11 @@
+.DS_Store
+*.pyc
+*.pyo
+py3
+py3*
+node_modules
+dist
+*.egg
+*.egg-info
+.tox
+.module-cache

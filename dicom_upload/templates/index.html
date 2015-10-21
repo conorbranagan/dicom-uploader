@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+        <link href="/static/css/style.css" media="screen" rel="stylesheet" type="text/css" />
+        <title>Dicom Viewer</title>
+    </head>
+    <body>
+        <div id="content"></div>
+
+        <!-- Scripts -->
+        <script src="https://fb.me/react-0.13.3.js"></script -->
+        <script src="static/js/build/Dicom.js"></script>
+        <script>
+        (function() {
+            React.render(
+                React.createElement(window.exports.DicomPage, null),
+                document.getElementById('content')
+            );
+        }())
+        </script>
+    </body>
+</html>
