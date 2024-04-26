@@ -4,12 +4,12 @@ import os
 import uuid
 
 # 3p
-import dicom
+import pydicom
 from flask import current_app
 from flask.ext.sqlalchemy import SQLAlchemy
 
 # project
-from dicom_upload.lib import dicom as dicom_lib
+from dicom_upload.lib import pydicom as dicom_lib
 
 db = SQLAlchemy()
 
