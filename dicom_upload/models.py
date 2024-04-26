@@ -6,7 +6,7 @@ import uuid
 # 3p
 import pydicom
 from flask import current_app
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 # project
 from dicom_upload.lib import pydicom as dicom_lib
