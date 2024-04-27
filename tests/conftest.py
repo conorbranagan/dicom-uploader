@@ -7,15 +7,16 @@ from dicom_upload.models import db
 @pytest.fixture()
 def testapp(request):
     app = create_app('dicom_upload.settings.TestConfig', env='dev')
-    client = app.test_client()
+    with app.app_context():
+        client = app.test_client()
 
-    db.app = app
-    db.create_all()
+        db.create_all()
 
-    def teardown():
-        db.session.remove()
-        db.drop_all()
+        def teardown():
+            with app.app_context():
+                db.session.remove()
+                db.drop_all()
 
-    request.addfinalizer(teardown)
+        request.addfinalizer(teardown)
 
     return client

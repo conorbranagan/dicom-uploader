@@ -4,12 +4,13 @@ import os
 import uuid
 
 # 3p
-import dicom
+import pydicom
 from flask import current_app
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+from PIL import Image
 
 # project
-from dicom_upload.lib import dicom as dicom_lib
+import pydicom as dicom_lib
 
 db = SQLAlchemy()
 
@@ -47,7 +48,7 @@ class DicomFile(db.Model):
     def from_file(cls, filename, fh):
         """ Create a DicomFile from an open file handle. """
         try:
-            ds = dicom.read_file(fh)
+            ds = dicom_lib.dcmread(fh)
         except Exception:
             raise DicomParsingException(filename)
 
@@ -100,12 +101,21 @@ class DicomFile(db.Model):
 
         # Write the raw file.
         with open(raw_path, 'wb+') as f:
-            dicom.write_file(f, ds)
+            ds.save_as(f)
 
         # Attempt to convert to an image and write out.
         img_base_path = current_app.config['IMG_ABS_UPLOAD_DIR']
         try:
-            img = dicom_lib.pil_from_dataset(ds)
+            # Extract pixel data
+            pixel_array = ds.pixel_array
+
+            # Convert to an image
+            img = Image.fromarray(pixel_array)
+
+            # Convert the image to RGB if it's not already in that mode
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+
         except Exception:
             # Just move on if we can't get an image.
             return {'raw': raw_filename}
